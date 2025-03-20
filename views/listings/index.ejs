@@ -1,7 +1,4 @@
-<% layout("/layouts/boilerplate") %>
-
-<body>
-  <style>
+<style>
     #filters {
       display: flex;
       flex-wrap: nowrap;
@@ -29,6 +26,13 @@
       cursor: pointer;
     }
 
+    .tax-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
     .tax-toggle {
       border: 1px solid black;
       border-radius: 1rem;
@@ -39,6 +43,13 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+
+    .Name {
+  margin: 0;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
 
     @media (max-width: 768px) {
       .filter p {
@@ -53,6 +64,11 @@
         font-size: 0.8rem;
         height: auto;
         padding: 0.3rem 0.8rem;
+      }
+
+      .tax-container {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -75,7 +91,7 @@
 
     <div class="filter">
       <div><i class="fa-solid fa-mountain-sun"></i></div>
-      <p>Moutains</p>
+      <p>Mountains</p>
     </div>
 
     <div class="filter">
@@ -117,32 +133,23 @@
       <div><i class="fa-solid fa-ship"></i></div>
       <p>Boats</p>
     </div>
+  </div>
 
+  <div class="tax-container">
     <div class="tax-toggle">
       <div class="form-check-reverse form-switch">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="flexSwitchCheckDefault"
-        />
-        <label class="form-check-label" for="flexSwitchCheckDefault"
-          >Display total after Taxes</label
-        >
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after Taxes</label>
       </div>
     </div>
+    <p class="Name">Created by Mr. Debaraj</p>
   </div>
 
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for(let listing of allListings) { %>
     <a href="/listings/<%= listing._id %>" class="listing-link">
       <div class="card col listing-card">
-        <img
-          src="<%= listing.image.url %>"
-          class="card-img-top"
-          alt=".Listing_image"
-          style="height: 20rem"
-        />
+        <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing_image" style="height: 20rem" />
         <div class="card-img-overlay"></div>
         <div class="card-body">
           <p class="card-text">
@@ -169,4 +176,3 @@
       }
     });
   </script>
-</body>
