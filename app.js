@@ -1,7 +1,6 @@
 if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
-// console.log(process.env.SECRET);
 
 const express = require("express");
 const app = express();
@@ -21,7 +20,6 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const dbUrl = process.env.ATLASDB_URL;
 
 main()
@@ -67,10 +65,6 @@ const sessionOptions = {
   },
 };
 
-// app.get("/",(req,res) => {
-//     res.send("Hi, I am root");
-// });
-
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -88,32 +82,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get("/demouser",async(req,res) => {
-//     let fakeUser = new User({
-//         email: "student@gmail.com",
-//         username: "delta-student",
-//     });
-
-//     let registeredUser = await User.register(fakeUser,"helloworld");
-//     res.send(registeredUser);
-// });
-
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
-// app.get("/testlisting",async(req,res) => {
-//     let sampleListing = new Listing({
-//         title: "My new villa",
-//         description: "By the beach",
-//         price: 1200,
-//         location:"Calangute,Goa",
-//         country: "India"
-//     });
-//     await sampleListing.save();
-//     console.log("sample was saved");
-//     res.send("successful");
-// });
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page not Found!"));
@@ -122,7 +93,6 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
   res.status(statusCode).render("error.ejs", { message });
-  // res.status(statusCode).send(message);
 });
 
 app.listen(8080, () => {
