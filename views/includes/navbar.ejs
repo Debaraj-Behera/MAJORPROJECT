@@ -4,6 +4,9 @@
     color: #fff;
     border-radius: 1.5rem;
     padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .search-btn:hover {
@@ -13,7 +16,11 @@
 
   .search-btn i {
     display: inline;
-    margin-right: 0.5rem;
+  }
+
+  .search-btn .search-text {
+    display: inline;
+    padding: 0.5rem;
   }
 
   .search-input {
@@ -26,25 +33,34 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .navbar-collapse {
-    background: #fff;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 0.5rem;
-  }
-
   .navbar-toggler {
     border: none;
+  }
+  .navbar-collapse {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    margin-top: 0;
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
   }
 
   @media (max-width: 768px) {
     .navbar-collapse {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
       z-index: 1000;
+      margin-top: 0.5rem;
     }
 
     .navbar-nav {
@@ -56,14 +72,25 @@
       width: 100%;
       margin-bottom: 0.5rem;
     }
+
+    .search-btn .search-text {
+      display: none;
+    }
   }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <a class="navbar-brand" href="/listings"
+      ><i class="fa-regular fa-compass"></i
+    ></a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -74,20 +101,25 @@
 
       <div class="navbar-nav ms-auto">
         <form class="d-flex" role="search">
-          <input class="form-control me-2 search-input" type="search" placeholder="Search destinations">
-          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+          <input
+            class="form-control me-2 search-input"
+            type="search"
+            placeholder="Search destinations"
+          />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="search-text">Search</span>
+          </button>
         </form>
       </div>
 
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Add new Listings</a>
         <% if (!currUser) { %>
-          <a class="nav-link" href="/signup"><b>SignUp</b></a>
-          <a class="nav-link" href="/login"><b>Login</b></a>
-        <% } %>
-
-        <% if (currUser) { %>
-          <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <a class="nav-link" href="/signup"><b>SignUp</b></a>
+        <a class="nav-link" href="/login"><b>Login</b></a>
+        <% } %> <% if (currUser) { %>
+        <a class="nav-link" href="/logout"><b>Logout</b></a>
         <% } %>
       </div>
     </div>
